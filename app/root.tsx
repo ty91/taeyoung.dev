@@ -10,7 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import { GoogleAnalytics } from "./utils/google-analytics";
-import siteConfig from "../site.config";
+import siteConfig from "site-config";
 import { GlobalNavigationBar } from "./components/global-navigation-bar";
 
 export const links: Route.LinksFunction = () => [

@@ -11,8 +11,8 @@ export default function PostsPage() {
 
   return (
     <ul>
-      {posts.map(({ id, title, slug }) => (
-        <li key={id}>
+      {posts.map(({ title, slug }) => (
+        <li key={slug}>
           <Link to={`/posts/${slug}`}>{title}</Link>
         </li>
       ))}

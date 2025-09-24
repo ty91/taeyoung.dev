@@ -1,27 +1,21 @@
+import siteConfig from "site-config";
+import fs from "fs-extra";
+import type { Post } from "~/types/post";
+
 export async function getPosts() {
-  // mock data
-  return [
-    {
-      id: 1,
-      title: "Test Post",
-      date: "2025-09-24",
-      slug: "test",
-    },
-    {
-      id: 2,
-      title: "Test Post 2",
-      date: "2025-09-24",
-      slug: "test-2",
-    },
-  ];
+  const posts: Post[] = await fs.readJson(
+    `${siteConfig.blog.generatedPath}/posts.json`
+  );
+  return posts;
 }
 
 export async function getPost(slug: string) {
-  // mock data
-  return {
-    id: 1,
-    title: "Test Post",
-    date: "2025-09-24",
-    slug: "test",
-  };
+  try {
+    const post: Post = await fs.readJson(
+      `${siteConfig.blog.generatedPath}/${slug}.json`
+    );
+    return post;
+  } catch {
+    return null;
+  }
 }
