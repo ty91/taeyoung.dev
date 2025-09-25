@@ -14,15 +14,9 @@ import siteConfig from "site-config";
 import { GlobalNavigationBar } from "./components/global-navigation-bar";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css",
   },
 ];
 
@@ -36,9 +30,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
         <GoogleAnalytics id={siteConfig.googleAnalytics.id} />
       </head>
-      <body>
+      <body className="mx-auto max-w-[640px] px-4">
         <GlobalNavigationBar />
-        {children}
+        <main className="mb-24">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>
