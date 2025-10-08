@@ -30,10 +30,15 @@ function LinkItem({
   isActive: boolean;
 }) {
   return (
-    <li
-      className={cn(isActive ? "border-b-2" : "border-b-0", "hover:opacity-50")}
-    >
-      <NavLink to={to} prefetch="render">
+    <li>
+      <NavLink
+        to={to}
+        className={cn(
+          isActive ? "border-b-2" : "border-b-0",
+          "py-0.5 hover:opacity-50"
+        )}
+        prefetch="render"
+      >
         {children}
       </NavLink>
     </li>
