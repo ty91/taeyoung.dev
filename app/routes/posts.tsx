@@ -3,7 +3,7 @@ import { getPosts } from "~/utils/post";
 import type { Route } from "./+types/posts";
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "Posts | taeyoung.dev" }];
+  return [{ title: "Posts · taeyoung.dev" }];
 }
 
 export async function loader() {
