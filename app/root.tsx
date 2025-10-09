@@ -18,6 +18,16 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css",
   },
+  {
+    rel: "icon",
+    sizes: "32x32",
+    href: "/favicon-32x32.png",
+  },
+  {
+    rel: "icon",
+    sizes: "16x16",
+    href: "/favicon-16x16.png",
+  },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
