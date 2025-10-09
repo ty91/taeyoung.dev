@@ -8,11 +8,22 @@ import fg from "fast-glob";
 import fs from "fs-extra";
 
 /**
+ * Rewrite relative attachment paths to absolute public paths.
+ * Example: ./attachments/image.png -> /posts/attachments/image.png
+ */
+function rewriteAttachmentPaths(markdown: string): string {
+  return markdown.replace(
+    /!\[([^\]]*)\]\((\.\/)?attachments\/([^)]+)\)/g,
+    "![$1](/posts/attachments/$3)"
+  );
+}
+
+/**
  * Read all Markdown files under SiteConfig.blog.contentPath and convert them to Post objects.
  * - Parses frontmatter with gray-matter
  * - Converts Markdown body to HTML with marked
+ * - Rewrites attachment paths to public URLs
  *
- * TODO: Handle assets copying and link rewriting for images/attachments.
  * TODO: Support additional extensions (e.g., .mdx) if needed.
  */
 export async function readPostsFromContent(
@@ -33,8 +44,11 @@ export async function readPostsFromContent(
     const raw = await readFile(absoluteFilePath, "utf8");
     const parsed = matter(raw);
 
+    // Rewrite attachment paths before converting to HTML
+    const rewrittenContent = rewriteAttachmentPaths(parsed.content);
+
     // Convert Markdown to HTML
-    const html = marked.parse(parsed.content);
+    const html = marked.parse(rewrittenContent);
 
     // Derive slug from frontmatter or filename (without extension)
     const relativePath = path.relative(absRoot, absoluteFilePath);
