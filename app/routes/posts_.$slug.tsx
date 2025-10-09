@@ -21,7 +21,10 @@ export default function PostPage() {
 
   return (
     <div>
-      <article dangerouslySetInnerHTML={{ __html: content }} />
+      <article
+        className="prose dark:prose-invert"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </div>
   );
 }

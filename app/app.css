@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-white: #ffffff;
@@ -33,4 +34,5 @@
 
 html {
   font-family: var(--font-sans);
+  scrollbar-gutter: stable;
 }
