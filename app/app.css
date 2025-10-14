@@ -29,10 +29,10 @@
 }
 
 :root {
-  --font-sans: "Pretendard", sans-serif;
+  --font-serif: "Gowun Batang", serif;
 }
 
 html {
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   scrollbar-gutter: stable;
 }

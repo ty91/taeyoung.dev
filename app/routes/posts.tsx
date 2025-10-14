@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router";
 import { getPosts } from "~/utils/post";
 import type { Route } from "./+types/posts";
+import { formatDate } from "~/utils/date";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Posts · taeyoung.dev" }];
@@ -16,21 +17,17 @@ export default function PostsPage() {
   const posts = useLoaderData<typeof loader>();
 
   return (
-    <ul className="grid grid-cols-1 gap-2">
+    <section className="grid grid-cols-1 gap-2">
       {posts.map(({ title, date, slug }) => (
-        <li key={slug} className="flex justify-between items-center">
-          <Link
-            to={`/posts/${slug}`}
-            className="flex-1 hover:opacity-50 py-2"
-            prefetch="intent"
-          >
-            {title}
-          </Link>
-          <span className="text-sm text-gray-500">
-            {new Date(date).toLocaleDateString()}
-          </span>
-        </li>
+        <Link
+          key={slug}
+          to={`/posts/${slug}`}
+          className="grid grid-cols-[120px_1fr] gap-2 justify-between items-center"
+        >
+          <span className="text-sm text-gray-500">{formatDate(date)}</span>
+          <h2 className="hover:opacity-50 font-bold py-2">{title}</h2>
+        </Link>
       ))}
-    </ul>
+    </section>
   );
 }

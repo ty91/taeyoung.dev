@@ -15,8 +15,17 @@ import { GlobalNavigationBar } from "./components/global-navigation-bar";
 
 export const links: Route.LinksFunction = () => [
   {
+    rel: "preconnect",
+    href: "https://fonts.googleapis.com",
+  },
+  {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossOrigin: "anonymous",
+  },
+  {
     rel: "stylesheet",
-    href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css",
+    href: "https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap",
   },
   {
     rel: "icon",
