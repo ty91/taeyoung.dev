@@ -1,0 +1,27 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }: CollectionEntry<"posts">) => !data.draft);
+  return posts.map((post: CollectionEntry<"posts">) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title}>
+  <div>
+    <article class="prose dark:prose-invert">
+      <Content />
+    </article>
+  </div>
+</BaseLayout>

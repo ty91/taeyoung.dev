@@ -1,8 +1,8 @@
 ---
-title: "Test Post 2"
-date: 2025-09-25 14:06:00+09:00
+title: "Test Post"
+date: 2025-09-24 14:11:00+09:00
 draft: false
-slug: test-post-2
+slug: test-post
 ---
 
 이것은 테스트
@@ -16,7 +16,7 @@ slug: test-post-2
 
 ---
 
-![test_image](./attachments/test_image.png)
+![test_image](/posts/attachments/test_image.png)
 
 > testing
 > more lines

@@ -1,8 +1,8 @@
 .DS_Store
 /node_modules/
+.pnpm-store/
 
-# React Router
-/.react-router/
-/build/
+# Astro
+/dist/
+/.astro/
 /public/posts/attachments/
-/generated/

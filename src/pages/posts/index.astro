@@ -1,0 +1,24 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { formatDate } from "~/utils/date";
+
+const posts = await getCollection("posts", ({ data }: CollectionEntry<"posts">) => !data.draft);
+posts.sort((a: CollectionEntry<"posts">, b: CollectionEntry<"posts">) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="Posts">
+  <section class="grid grid-cols-1 gap-2">
+    {
+      posts.map(({ data: { title, date }, slug }: CollectionEntry<"posts">) => (
+        <a
+          href={`/posts/${slug}`}
+          class="grid grid-cols-[120px_1fr] gap-2 justify-between items-center"
+        >
+          <span class="text-sm text-gray-500">{formatDate(date)}</span>
+          <h2 class="hover:opacity-50 font-bold py-2">{title}</h2>
+        </a>
+      ))
+    }
+  </section>
+</BaseLayout>

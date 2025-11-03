@@ -7,11 +7,7 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm run build
 
-FROM node:22-alpine
-WORKDIR /app
-RUN corepack enable
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --prod --frozen-lockfile
-COPY --from=build-env /app/build ./build
-COPY --from=build-env /app/generated ./generated
-CMD ["pnpm", "start"]
+FROM nginx:alpine
+COPY --from=build-env /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
