@@ -1,8 +1,9 @@
 ---
 import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 import siteConfig from "../../site.config";
 import GlobalNavigationBar from "../components/GlobalNavigationBar.astro";
-import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 
 const { title } = Astro.props;
 const pageTitle = typeof title === "string" ? title : "taeyoung.dev";
@@ -21,12 +22,13 @@ const pageTitle = typeof title === "string" ? title : "taeyoung.dev";
     />
     <link rel="icon" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" sizes="16x16" href="/favicon-16x16.png" />
-    <GoogleAnalytics id={siteConfig.googleAnalytics.id} />
   </head>
   <body class="mx-auto max-w-[640px] px-4">
     <GlobalNavigationBar />
     <main class="mb-24">
       <slot />
     </main>
+    <Analytics />
+    <SpeedInsights />
   </body>
 </html>
