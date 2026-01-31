@@ -16,7 +16,7 @@ slug: test-post
 
 ---
 
-![test_image](./attachments/test_image.png)
+![test_image](/posts/attachments/test_image.png)
 
 > testing
 > more lines

@@ -1,0 +1,17 @@
+---
+const { id } = Astro.props;
+const analyticsId = typeof id === "string" ? id : "";
+---
+{
+  analyticsId ? (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`} />
+      <script is:inline>
+        {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${analyticsId}');`}
+      </script>
+    </>
+  ) : null
+}

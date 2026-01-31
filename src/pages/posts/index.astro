@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { formatDate } from "../../utils/date";
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<BaseLayout title="Posts · taeyoung.dev">
+  <section class="grid grid-cols-1 gap-2">
+    {posts.map((post) => (
+      <a
+        href={`/posts/${post.data.slug}`}
+        class="grid grid-cols-[120px_1fr] gap-2 justify-between items-center"
+      >
+        <span class="text-sm text-gray-500">{formatDate(post.data.date.toISOString())}</span>
+        <h2 class="hover:opacity-50 font-bold py-2">{post.data.title}</h2>
+      </a>
+    ))}
+  </section>
+</BaseLayout>
