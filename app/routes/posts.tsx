@@ -22,6 +22,7 @@ export default function PostsPage() {
         <Link
           key={slug}
           to={`/posts/${slug}`}
+          prefetch="viewport"
           className="grid grid-cols-[120px_1fr] gap-2 justify-between items-center"
         >
           <span className="text-sm text-gray-500">{formatDate(date)}</span>
